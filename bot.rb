@@ -52,7 +52,7 @@ end
 
 bot.mention(contains: /show leaderboard/i) do |event|
   response = ""
-  leaderboard = user_points.sort_by {|_key, value| value}
+  leaderboard = user_points.sort_by {|_key, value| -value}
   (0..4).each {|i|  response += "##{i + 1}.) #{bot.users[leaderboard[i][0]].name}: #{leaderboard[i][1]} point(s)\n" if leaderboard[i]}
   event.respond response
   save_to_file(user_points)
